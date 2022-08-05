@@ -11,18 +11,14 @@ data "oci_identity_compartment" "default" {
   id = var.compartment_id
 }
 
-data "template_file" "instance_cloud_init_file" {
-  template = file("${path.module}/cloud-init/cloud-init.template.yaml")
-}
-
-data "template_cloudinit_config" "instance" {
+data "cloudinit_config" "instance" {
   gzip          = true
   base64_encode = true
 
   part {
     filename     = "server.yaml"
     content_type = "text/cloud-config"
-    content      = data.template_file.instance_cloud_init_file.rendered
+    content      = file("${path.module}/cloud-init/cloud-init.template.yaml")
   }
 }
 
@@ -44,6 +40,6 @@ data "oci_objectstorage_namespace" "this" {
 
 data "oci_core_boot_volumes" "boot_volumes" {
   availability_domain = data.oci_identity_availability_domain.ad_domain.name
-  compartment_id = var.compartment_id
-  depends_on = [ oci_core_instance.nextcloud ]
+  compartment_id      = var.compartment_id
+  depends_on          = [oci_core_instance.nextcloud]
 }

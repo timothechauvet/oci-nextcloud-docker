@@ -5,7 +5,6 @@ module "nextcloud" {
   project_name        = "nextcloud"
   region              = var.region
   compartment_id      = var.compartment_ocid
-  tenancy_ocid        = var.tenancy_ocid
   config_file_profile = var.config_file_profile
   ad_number           = 1
   ssh_public_key      = var.ssh_public_key #file("~/.ssh/id_rsa_oci.pub")

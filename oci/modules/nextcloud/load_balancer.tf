@@ -38,10 +38,10 @@ resource "oci_load_balancer_listener" "tcp_80_ingress" {
 }
 
 resource "oci_load_balancer_backend" "tcp_80_backend" {
-    backendset_name = oci_load_balancer_backend_set.tcp_80_ingress.name
-    ip_address = oci_core_instance.nextcloud.private_ip
-    load_balancer_id = oci_load_balancer.public_ingress.id
-    port = 80
+  backendset_name  = oci_load_balancer_backend_set.tcp_80_ingress.name
+  ip_address       = oci_core_instance.nextcloud.private_ip
+  load_balancer_id = oci_load_balancer.public_ingress.id
+  port             = 80
 }
 
 resource "oci_load_balancer_backend_set" "tcp_443_ingress" {
@@ -71,8 +71,8 @@ resource "oci_load_balancer_listener" "tcp_443_ingress" {
 }
 
 resource "oci_load_balancer_backend" "tcp_443__backend" {
-    backendset_name = oci_load_balancer_backend_set.tcp_443_ingress.name
-    ip_address = oci_core_instance.nextcloud.private_ip
-    load_balancer_id = oci_load_balancer.public_ingress.id
-    port = 443
+  backendset_name  = oci_load_balancer_backend_set.tcp_443_ingress.name
+  ip_address       = oci_core_instance.nextcloud.private_ip
+  load_balancer_id = oci_load_balancer.public_ingress.id
+  port             = 443
 }
